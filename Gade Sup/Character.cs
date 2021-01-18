@@ -82,4 +82,17 @@ namespace Gade_Sup
             return Text;
         }
     }
+
+    class Leader : Enemy
+    {
+        private Tile leadTarget;
+        public Tile LeadTarget { get => leadTarget; set => leadTarget = value; }
+        public Leader(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
+        {
+            Hp = 20;
+            Dmg = 2;
+        }
+
+        
+    }
 }
