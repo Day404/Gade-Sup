@@ -64,4 +64,22 @@ namespace Gade_Sup
 
         }
     }
+
+    abstract class Enemy : Character
+    {
+        protected Random Rng = new Random();
+        protected Enemy(int Hp, int Dmg, int varY, int varX) : base(varY, varX)
+        {
+            NewTile = TileType.Enemy;
+            hp = Hp;
+            maxHp = Hp;
+            dmg = Dmg;
+        }
+
+        public override string ToString()
+        {
+            string Text = "\n" + nameof(Enemy) + " at " + "\n[" + varX + "," + varY + "](Damage: " + dmg + ")";
+            return Text;
+        }
+    }
 }
