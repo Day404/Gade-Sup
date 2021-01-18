@@ -20,7 +20,7 @@ namespace Gade_Sup
         public int Dmg { get => dmg; set => dmg = value; }
         public int MaxHp { get => maxHp; set => maxHp = value; }
 
-        public enum Movement {Idle, Up, Down, left, Right }
+        public enum Movement { Up, Down, Left, Right, Idle }
         public Character(int varY, int varX) : base(varY, varX)
         {
             Vision = new Tile[8];
@@ -74,7 +74,7 @@ namespace Gade_Sup
                 case Movement.Down:
                     varY--;
                     break;
-                case Movement.left:
+                case Movement.Left:
                     varX--;
                     break;
                 case Movement.Right:
@@ -168,6 +168,87 @@ namespace Gade_Sup
             Dmg = 2;
         }
 
-        
+        public override Movement ReturnMove(Movement Move)
+        {
+            //if (leadTarget.varY < varY && vision[0].NewTile == TileType.EmptyTile)
+            //{
+            //    return Movement.Up;
+            //}
+            //if (leadTarget.varY > varY && vision[1].NewTile == TileType.EmptyTile)
+            //{
+            //    return Movement.Down;
+            //}
+            //if (leadTarget.varX < varX && vision[2].NewTile == TileType.EmptyTile)
+            //{
+            //    return Movement.Left;
+            //}
+            //if (leadTarget.varX > varX && vision[3].NewTile == TileType.EmptyTile)
+            //{
+            //    return Movement.Right;
+            //}
+            Movement Value = Movement.Idle;
+
+            switch (Move)
+            {
+                case Movement.Up:
+                    if (leadTarget.varY < varY && vision[0].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Up;
+                    }
+                    break;
+                case Movement.Down:
+                    if (leadTarget.varY > varY && vision[1].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Down;
+                    }
+                    break;
+                case Movement.Left:
+                    if (leadTarget.varX < varX && vision[2].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Left;
+                    }
+                    break;
+                case Movement.Right:
+                    if (leadTarget.varX > varX && vision[3].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Right;
+                    }
+                    break;               
+            }
+            
+
+            int Roll = Rng.Next(0, 4);
+
+            switch (Roll)
+            {
+                case 0:
+                    if (vision[0].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Up;
+                    }
+                    break;
+                case 1:
+                    if (vision[1].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Down;
+                    }
+                    break;
+                case 2:
+                    if (vision[2].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Left;
+                    }
+                    break;
+                case 4:
+                    if (vision[3].NewTile == TileType.EmptyTile)
+                    {
+                        Value = Movement.Right;
+                    }
+                    break;
+            }
+
+            return Value;
+        }
+
     }
 }
