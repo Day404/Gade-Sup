@@ -142,9 +142,9 @@ namespace Gade_Sup
     {
         public Goblin(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
         {
-            Hp = 10;
-            maxHp = 10;
-            Dmg = 1;
+            
+            maxHp = Hp;
+            
         }
 
         public override Movement ReturnMove(Movement Move)
@@ -160,11 +160,11 @@ namespace Gade_Sup
 
     class Mage : Enemy
     {
-        public Mage(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
+        public Mage(int Hp, int Dmg, int varY, int varX) : base(H, Dmg, varY, varX)
         {
-            Hp = 5;
-            maxHp = 5;
-            dmg = 5;
+           
+            maxHp = Hp;
+            
         }
 
         public override bool CheckRange(Character Target)
@@ -191,8 +191,7 @@ namespace Gade_Sup
         public Tile LeadTarget { get => leadTarget; set => leadTarget = value; }
         public Leader(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
         {
-            Hp = 20;
-            Dmg = 2;
+            maxHp = Hp;
         }
 
         public override Movement ReturnMove(Movement Move)

@@ -144,10 +144,16 @@ namespace Gade_Sup
                     switch (Rng.Next(0,3))
                     {
                         case 0:
+                            mapDisplay[Ypos, Xpos] = new Goblin(10, 1, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
                             break;
                         case 1:
+                            mapDisplay[Ypos, Xpos] = new Mage(5, 5, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
                             break;
                         case 2:
+                            mapDisplay[Ypos, Xpos] = new Leader(20, 2, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
                             break;
                     }
                     break;
