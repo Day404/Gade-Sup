@@ -63,6 +63,30 @@ namespace Gade_Sup
 
         }
 
+        public void UpdateVision()
+        {
+            H.Vision[0] = MapDisplay[H.varY - 1, H.varX];
+            H.Vision[1] = MapDisplay[H.varY + 1, H.varX];
+            H.Vision[2] = MapDisplay[H.varY , H.varX -1];
+            H.Vision[3] = MapDisplay[H.varY , H.varX + 1];
+            H.Vision[4] = MapDisplay[H.varY - 1 , H.varX - 1];
+            H.Vision[5] = MapDisplay[H.varY + 1 , H.varX - 1];
+            H.Vision[6] = MapDisplay[H.varY + 1, H.varX + 1];
+            H.Vision[7] = MapDisplay[H.varY - 1, H.varX - 1];
+
+            for (int i = 0; i < Enemies.Length ; i++)
+            {
+                Enemies[i].Vision[0] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX];
+                Enemies[i].Vision[1] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX];
+                Enemies[i].Vision[2] = MapDisplay[Enemies[i].varY, Enemies[i].varX - 1];
+                Enemies[i].Vision[3] = MapDisplay[Enemies[i].varY, Enemies[i].varX + 1];
+                Enemies[i].Vision[4] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX - 1];
+                Enemies[i].Vision[5] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX - 1];
+                Enemies[i].Vision[6] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX + 1];
+                Enemies[i].Vision[7] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX - 1];
+            }
+        }
+
         private Tile Create(Tile.TileType Type)
         {
             int Height = height, Width = width; 

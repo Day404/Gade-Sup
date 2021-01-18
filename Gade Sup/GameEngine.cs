@@ -9,7 +9,7 @@ namespace Gade_Sup
     class GameEngine 
     {
         private Map gameMap;       
-        private string empty = ". ", obsticale = "X", gold = " * ", weapon = "W", hero = "H";
+        private string empty = ". ", obsticale = "X", gold = " * ", weapon = "W", hero = "H", leader = "L", goblin = "G", mage = "M";
         Hero H;
         public Shop Vendor;
 
@@ -19,6 +19,9 @@ namespace Gade_Sup
         public string Gold { get => gold;  }
         public string Weapon { get => weapon;  }
         public string Hero { get => hero;  }
+        public string Leader { get => leader; }
+        public string Goblin { get => goblin; }
+        public string Mage { get => mage; }
 
         public GameEngine()
         {
