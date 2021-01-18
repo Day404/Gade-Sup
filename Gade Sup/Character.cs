@@ -8,15 +8,56 @@ namespace Gade_Sup
 {
     abstract class Character : Tile
     {
-        protected int hp, maxHp, dmg;
+        protected int maxHp;
         protected int wallet;
+        protected Tile[] vision;
+        protected int hp;
+        protected int dmg;
 
         public int Wallet { get => wallet; set => wallet = value; }
+        public Tile[] Vision { get => vision; set => vision = value; }
+        public int Hp { get => hp; set => hp = value; }
+        public int Dmg { get => dmg; set => dmg = value; }
+        public int MaxHp { get => maxHp; set => maxHp = value; }
 
         public enum Movement {Idle, Up, Down, left, Right }
         public Character(int varY, int varX) : base(varY, varX)
         {
-           
+            Vision = new Tile[8];
+        }
+        public virtual void Attack(Character Target)
+        {
+            Target.Hp = Target.Hp - Dmg;
+        }
+
+        public bool IsDead()
+        {
+            if (Hp < 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private int DistanceTo(Character Target)
+        {
+            int Value = Math.Abs(Target.varY - varY) + Math.Abs(Target.varX - varX);
+            return Value;
+        }
+
+        public virtual bool CheckRange(Character Target)
+        {
+            if (DistanceTo(Target) <= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Move(Movement Move)
@@ -42,9 +83,11 @@ namespace Gade_Sup
             }
         }
 
+        public abstract Movement ReturnMove(Movement Move);
         public abstract override string ToString();
     }
 
+    
     class Hero : Character
     {
         public Hero(int Hp,  int varY, int varX) : base(varY, varX)
@@ -54,6 +97,18 @@ namespace Gade_Sup
             hp = Hp;
             maxHp = Hp;
             dmg = 2;
+        }
+
+        public override Movement ReturnMove(Movement Move)
+        {
+            if (vision[Convert.ToInt32(Move)].NewTile != TileType.EmptyTile)
+            {
+                return Movement.Idle;
+            }
+            else
+            {
+                return Move;
+            }
         }
 
         public override string ToString()

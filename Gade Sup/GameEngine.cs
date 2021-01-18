@@ -9,7 +9,7 @@ namespace Gade_Sup
     class GameEngine 
     {
         private Map gameMap;       
-        private string empty = " . ", obsticale = "X ", gold = " * ", weapon = "W", hero = "H";
+        private string empty = ". ", obsticale = "X", gold = " * ", weapon = "W", hero = "H";
         Hero H;
         public Shop Vendor;
 
@@ -22,7 +22,7 @@ namespace Gade_Sup
 
         public GameEngine()
         {
-            GameMap = new Map(10, 10, 10, 10, 6, 3);
+            GameMap = new Map(14, 14, 8, 8, 6, 3, 5);
             H = GameMap.H;
             Vendor = new Shop(H);
         }

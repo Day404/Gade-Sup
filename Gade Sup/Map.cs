@@ -15,12 +15,14 @@ namespace Gade_Sup
         private Item[] Items;
         private int ItemIndex = 0;
         private Tile Spawn;
+        private Enemy[] Enemies;
         public int Width { get => width;  }
         public int Height { get => height;  }
         public Tile[,] MapDisplay { get => mapDisplay; set => mapDisplay = value; }
 
-        public Map(int MinX, int MaxX, int MinY, int MaxY, int GoldDrops, int WeaponDrops)
+        public Map(int MinX, int MaxX, int MinY, int MaxY, int GoldDrops, int WeaponDrops, int EnemyNo)
         {
+            Enemies = new Enemy[EnemyNo];
             Items = new Item[GoldDrops + WeaponDrops];
             this.height = Rng.Next(MinY, MaxY + 1);
             this.width = Rng.Next(MinX, MaxX + 1);
@@ -113,6 +115,9 @@ namespace Gade_Sup
                             Spawn = mapDisplay[Ypos, Xpos];
                         }
                     }
+                    break;
+                case Tile.TileType.Enemy:
+
                     
                     break;
             }

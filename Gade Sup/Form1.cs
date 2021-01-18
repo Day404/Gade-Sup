@@ -19,13 +19,14 @@ namespace Gade_Sup
 
         public frmDisplay()
         {
+
             InitializeComponent();
             H = Engine.GameMap.H;
             rtbStats.Text = "";
             StatUpdate();
             ShopUpdate();
             DisplayMap();
-            
+            btnBuy.Enabled = false;
         }
 
         public void StatUpdate()
