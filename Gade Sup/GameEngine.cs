@@ -22,7 +22,7 @@ namespace Gade_Sup
 
         public GameEngine()
         {
-            GameMap = new Map(10, 10, 10, 10, 6);
+            GameMap = new Map(10, 10, 10, 10, 6, 3);
             H = GameMap.H;
             Vendor = new Shop(H);
         }

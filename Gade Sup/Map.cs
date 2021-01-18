@@ -15,13 +15,13 @@ namespace Gade_Sup
         private Item[] Items;
         private int ItemIndex = 0;
         private Tile Spawn;
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
+        public int Width { get => width;  }
+        public int Height { get => height;  }
         public Tile[,] MapDisplay { get => mapDisplay; set => mapDisplay = value; }
 
-        public Map(int MinX, int MaxX, int MinY, int MaxY, int GoldDrops)
+        public Map(int MinX, int MaxX, int MinY, int MaxY, int GoldDrops, int WeaponDrops)
         {
-
+            Items = new Item[GoldDrops + WeaponDrops];
             this.height = Rng.Next(MinY, MaxY + 1);
             this.width = Rng.Next(MinX, MaxX + 1);
 
@@ -48,15 +48,22 @@ namespace Gade_Sup
 
             for (int i = 0; i < GoldDrops; i++)
             {
-                Create(Tile.TileType.Gold);
+                Items[ItemIndex] = (Item)Create(Tile.TileType.Gold);
                 ItemIndex++;
             }
-            
-            
+
+            for (int i = GoldDrops; i < WeaponDrops + GoldDrops; i++)
+            {
+                Items[ItemIndex] = (Item)Create(Tile.TileType.Weapon);
+                ItemIndex++;
+            }
+
+
         }
 
         private Tile Create(Tile.TileType Type)
         {
+            int Height = height, Width = width; 
             
             int Ypos = Rng.Next(1, Height - 1);
             int Xpos = Rng.Next(1, Width - 1);
@@ -77,6 +84,36 @@ namespace Gade_Sup
                     mapDisplay[Ypos, Xpos] = new Gold(Ypos, Xpos);
                     Spawn = new Gold(Ypos, Xpos);
                     //Items[ItemIndex] = new Gold(Ypos, Xpos);
+                    break;
+                case Tile.TileType.Weapon:
+                    if (Rng.Next(0, 2) == 0)
+                    {
+                        if (Rng.Next(0, 2) == 0)
+                        {
+                            mapDisplay[Ypos, Xpos] = new MeleeWeapon(MeleeWeapon.Types.Dagger, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
+                        }
+                        else
+                        {
+                            mapDisplay[Ypos, Xpos] = new MeleeWeapon(MeleeWeapon.Types.Longsword, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
+                        }
+
+                    }
+                    else
+                    {
+                        if (Rng.Next(0, 2) == 0)
+                        {
+                            mapDisplay[Ypos, Xpos] = new RangedWeapon(RangedWeapon.Types.Longbow, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
+                        }
+                        else
+                        {
+                            mapDisplay[Ypos, Xpos] = new RangedWeapon(RangedWeapon.Types.Rifle, Ypos, Xpos);
+                            Spawn = mapDisplay[Ypos, Xpos];
+                        }
+                    }
+                    
                     break;
             }
             return Spawn;

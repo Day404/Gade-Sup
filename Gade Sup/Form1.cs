@@ -68,9 +68,9 @@ namespace Gade_Sup
         {
             lblMap.Text = "";
 
-            for (int y = 0; y < Engine.GameMap.Height; y++)
+            for (int y = 0; y < Engine.GameMap.Height ; y++)
             {
-                for (int x = 0; x < Engine.GameMap.Width; x++)
+                for (int x = 0; x < Engine.GameMap.Width ; x++)
                 {
                     if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.EmptyTile)
                     {
@@ -87,6 +87,10 @@ namespace Gade_Sup
                     if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.Hero)
                     {
                         lblMap.Text += Engine.Hero;
+                    }
+                    if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.Weapon)
+                    {
+                        lblMap.Text += Engine.Weapon;
                     }
                 }
                 lblMap.Text += "\n";
