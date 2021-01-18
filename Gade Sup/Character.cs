@@ -87,10 +87,10 @@ namespace Gade_Sup
         public abstract override string ToString();
     }
 
-    
+
     class Hero : Character
     {
-        public Hero(int Hp,  int varY, int varX) : base(varY, varX)
+        public Hero(int Hp, int varY, int varX) : base(varY, varX)
         {
             NewTile = TileType.Hero;
             wallet = 12;
@@ -114,7 +114,7 @@ namespace Gade_Sup
         public override string ToString()
         {
             string Text = "";
-            Text = "\nPlayer Stats:\nHp: " + hp + "/" + maxHp + "\nDamage: " + dmg + "\nGold: "+ wallet +"\n[" + varX + "," + varY + "]";
+            Text = "\nPlayer Stats:\nHp: " + hp + "/" + maxHp + "\nDamage: " + dmg + "\nGold: " + wallet + "\n[" + varX + "," + varY + "]";
             return Text;
 
         }
@@ -151,10 +151,37 @@ namespace Gade_Sup
         {
             int Roll = Rng.Next(0, 4);
             while (vision[Roll].NewTile != TileType.EmptyTile)
-            { 
+            {
                 Roll = Rng.Next(0, 4);
             }
             return (Movement)Roll;
+        }
+    }
+
+    class Mage : Enemy
+    {
+        public Mage(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
+        {
+            Hp = 5;
+            maxHp = 5;
+            dmg = 5;
+        }
+
+        public override bool CheckRange(Character Target)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if (vision[i].NewTile == TileType.Hero || vision[i].NewTile == TileType.Enemy)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override Movement ReturnMove(Movement Move)
+        {
+            return Movement.Idle;
         }
     }
 

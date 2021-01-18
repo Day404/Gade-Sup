@@ -141,8 +141,15 @@ namespace Gade_Sup
                     }
                     break;
                 case Tile.TileType.Enemy:
-
-                    
+                    switch (Rng.Next(0,3))
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                    }
                     break;
             }
             return Spawn;
