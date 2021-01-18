@@ -138,6 +138,26 @@ namespace Gade_Sup
         }
     }
 
+    class Goblin : Enemy
+    {
+        public Goblin(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
+        {
+            Hp = 10;
+            maxHp = 10;
+            Dmg = 1;
+        }
+
+        public override Movement ReturnMove(Movement Move)
+        {
+            int Roll = Rng.Next(0, 4);
+            while (vision[Roll].NewTile != TileType.EmptyTile)
+            { 
+                Roll = Rng.Next(0, 4);
+            }
+            return (Movement)Roll;
+        }
+    }
+
     class Leader : Enemy
     {
         private Tile leadTarget;
