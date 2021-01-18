@@ -14,7 +14,7 @@ namespace Gade_Sup
         public int varY { get => vary; set => vary = value; }
         public int varX { get => varx; set => varx = value; }
 
-        public enum TileType {Obstacle, EmptyTile, Gold, Weapon, Hero, Enemy }
+        public enum TileType {Obstacle, EmptyTile, Gold, Weapon, Hero, Enemy, Leader, Mage, Goblin }
 
         public TileType NewTile;
 

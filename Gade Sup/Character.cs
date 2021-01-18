@@ -142,7 +142,7 @@ namespace Gade_Sup
     {
         public Goblin(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
         {
-            
+            NewTile = TileType.Goblin;
             maxHp = Hp;
             
         }
@@ -160,9 +160,9 @@ namespace Gade_Sup
 
     class Mage : Enemy
     {
-        public Mage(int Hp, int Dmg, int varY, int varX) : base(H, Dmg, varY, varX)
+        public Mage(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
         {
-           
+            NewTile = TileType.Mage;
             maxHp = Hp;
             
         }
@@ -191,6 +191,7 @@ namespace Gade_Sup
         public Tile LeadTarget { get => leadTarget; set => leadTarget = value; }
         public Leader(int Hp, int Dmg, int varY, int varX) : base(Hp, Dmg, varY, varX)
         {
+            NewTile = TileType.Leader;
             maxHp = Hp;
         }
 

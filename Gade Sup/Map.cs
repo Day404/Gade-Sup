@@ -60,7 +60,10 @@ namespace Gade_Sup
                 ItemIndex++;
             }
 
-
+            for (int i = 0; i < EnemyNo; i++)
+            {
+                Enemies[i] = (Enemy)Create(Tile.TileType.Enemy);
+            }
         }
 
         public void UpdateVision()

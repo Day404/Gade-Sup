@@ -89,10 +89,23 @@ namespace Gade_Sup
                     {
                         lblMap.Text += Engine.Hero;
                     }
+                    if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.Goblin)
+                    {
+                        lblMap.Text += Engine.Goblin;
+                    }
+                    if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.Mage)
+                    {
+                        lblMap.Text += Engine.Mage;
+                    }
+                    if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.Leader)
+                    {
+                        lblMap.Text += Engine.Leader;
+                    }
                     if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.Weapon)
                     {
                         lblMap.Text += Engine.Weapon;
                     }
+                    
                 }
                 lblMap.Text += "\n";
             }
