@@ -9,7 +9,7 @@ namespace Gade_Sup
     class GameEngine 
     {
         private Map gameMap;       
-        private string empty = ". ", obsticale = "X", gold = " * ", weapon = "W", hero = "H", leader = "L", goblin = "G", mage = "M";
+        private string empty = " . ", obsticale = "X", gold = " * ", weapon = "W", hero = "H", leader = "L", goblin = "G", mage = "M";
         Hero H;
         public Shop Vendor;
 
@@ -30,7 +30,35 @@ namespace Gade_Sup
             Vendor = new Shop(H);
         }
 
+        public bool Move(Character.Movement Move)
+        {
+            bool Value = false;
 
+            switch (Move)
+            {
+                case Character.Movement.Up:
+                    if (H.Vision[0].NewTile == Tile.TileType.EmptyTile)
+                    {
+                        H.Move(Character.Movement.Up);
+                        GameMap.MapDisplay[H.varY, H.varX] = H;
+                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
+                        GameMap.UpdateVision();
+                    }
+                    break;
+                case Character.Movement.Down:
+                    break;
+                case Character.Movement.Left:
+                    break;
+                case Character.Movement.Right:
+                    break;
+                case Character.Movement.Idle:
+                    break;
+                default:
+                    break;
+            }
+
+            return Value;
+        }
        
     }
 }

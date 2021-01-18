@@ -119,9 +119,9 @@ namespace Gade_Sup
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            //H.Move(Hero.Movement.Up);
-            //Engine.GameMap.MapDisplay[H.varY-1, H.varX] = new Hero(100,H.varY-1, H.varX);
-            //DisplayMap();
+            Engine.Move(Character.Movement.Up);
+            DisplayMap();
+
         }
 
         private void btnLeft_Click(object sender, EventArgs e)

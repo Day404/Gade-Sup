@@ -10,7 +10,7 @@ namespace Gade_Sup
     {
         protected int maxHp;
         protected int wallet;
-        protected Tile[] vision;
+        protected Tile[] vision = new Tile[8];
         protected int hp;
         protected int dmg;
 
@@ -23,7 +23,7 @@ namespace Gade_Sup
         public enum Movement { Up, Down, Left, Right, Idle }
         public Character(int varY, int varX) : base(varY, varX)
         {
-            Vision = new Tile[8];
+            
         }
         public virtual void Attack(Character Target)
         {
@@ -69,16 +69,16 @@ namespace Gade_Sup
                     varX = varX;
                     break;
                 case Movement.Up:
-                    varY++;
-                    break;
-                case Movement.Down:
                     varY--;
                     break;
+                case Movement.Down:
+                    varY++;
+                    break;
                 case Movement.Left:
-                    varX--;
+                    varX++;
                     break;
                 case Movement.Right:
-                    varX++;
+                    varX--;
                     break;
             }
         }

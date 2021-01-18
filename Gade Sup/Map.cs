@@ -64,6 +64,8 @@ namespace Gade_Sup
             {
                 Enemies[i] = (Enemy)Create(Tile.TileType.Enemy);
             }
+
+            UpdateVision();
         }
 
         public void UpdateVision()
@@ -99,8 +101,8 @@ namespace Gade_Sup
 
             while (mapDisplay[Ypos, Xpos].NewTile != Tile.TileType.EmptyTile)
             {
-                Ypos = Rng.Next(1, Height++);
-                Xpos = Rng.Next(1, Width++);
+                Ypos = Rng.Next(1, Height- 1);
+                Xpos = Rng.Next(1, Width- 1);
             }
 
             switch (Type)
