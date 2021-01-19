@@ -148,7 +148,7 @@ namespace Gade_Sup
                     }
                     break;
                 case Tile.TileType.Enemy:
-                    switch (Rng.Next(0,3))
+                    switch (2/*Rng.Next(0,3)*/)
                     {
                         case 0:
                             mapDisplay[Ypos, Xpos] = new Goblin(10, 1, Ypos, Xpos);

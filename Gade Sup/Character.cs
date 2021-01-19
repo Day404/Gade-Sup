@@ -13,12 +13,13 @@ namespace Gade_Sup
         protected Tile[] vision = new Tile[8];
         protected int hp;
         protected int dmg;
-        protected Weapon Floor ;
+        protected Weapon floor;
         public int Wallet { get => wallet; set => wallet = value; }
         public Tile[] Vision { get => vision; set => vision = value; }
         public int Hp { get => hp; set => hp = value; }
         public int Dmg { get => dmg; set => dmg = value; }
         public int MaxHp { get => maxHp; set => maxHp = value; }
+        public Weapon Floor { get => floor; set => floor = value; }
 
         public enum Movement { Up, Down, Left, Right, Idle }
         public Character(int varY, int varX) : base(varY, varX)
@@ -114,10 +115,11 @@ namespace Gade_Sup
         public Hero(int Hp, int varY, int varX) : base(varY, varX)
         {
             NewTile = TileType.Hero;
-            //wallet = 0;
+            wallet = 0;
             hp = Hp;
             maxHp = Hp;
-            dmg = 2;
+            floor = new MeleeWeapon(MeleeWeapon.Types.BareHands, varY, varX);
+            dmg = floor.Dmg;
         }
 
         public override Movement ReturnMove(Movement Move)
@@ -135,7 +137,21 @@ namespace Gade_Sup
         public override string ToString()
         {
             string Text = "";
-            Text = "\nPlayer Stats:\nHp: " + hp + "/" + maxHp + "\nDamage: " + dmg + "\nGold: " + wallet + "\n[" + varX + "," + varY + "]";
+            Text = "\nPlayer Stats:\nHp: "
+                   + hp
+                   + "/"
+                   + maxHp
+                   + "\nCurrent Weapon: "
+                   + floor.GetType().Name
+                   + "\nWeapon Damage: "
+                   + dmg
+                   + "\nGold: "
+                   + wallet
+                   + "\n["
+                   + varX
+                   + ","
+                   + varY
+                   + "]";
             return Text;
 
         }

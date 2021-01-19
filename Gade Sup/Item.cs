@@ -24,7 +24,7 @@ namespace Gade_Sup
 
         public Gold(int varY, int varX) : base(varY, varX)
         {
-            this.goldDrop = Rng.Next(1, 6);
+            goldDrop = Rng.Next(1, 6);
             NewTile = TileType.Gold;
         }
 
@@ -48,6 +48,7 @@ namespace Gade_Sup
         public Weapon(int varY, int varX) : base(varY, varX)
         {
             NewTile = TileType.Weapon;
+            
         }
 
 
@@ -60,13 +61,14 @@ namespace Gade_Sup
 
     class MeleeWeapon : Weapon
     {
-        public enum Types {Dagger, Longsword }
+        public enum Types {Dagger, Longsword, BareHands }
         public override int Range { get => base.Range; set => base.Range = 1; }
         public MeleeWeapon(Types DorL ,int varY, int varX) : base(varY, varX)
         {
             switch (DorL)
             {
                 case Types.Dagger:
+                    
                     dmg = 3;
                     dur = 10;
                     cost = 3;
@@ -77,6 +79,10 @@ namespace Gade_Sup
                     dur = 6;
                     cost = 5;
                     wtype = "Longsword";
+                    break;
+                case Types.BareHands:
+                    dmg = 2;
+                    wtype = "Bare Hands";
                     break;
             }
         }
