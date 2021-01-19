@@ -33,24 +33,12 @@ namespace Gade_Sup
 
         public void StatUpdate()
         {
-            rtbStats.Text += H.ToString();
-
+            lblPStats.Text += H.ToString();
         }
          
-        //private void cmbShopList_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-
-            
-        //}
         public void GoodGold()
-        {
-           
-            
-                btnBuy.Enabled = false;
-            
-            
-
+        {                  
+            btnBuy.Enabled = false;
             if(Engine.Vendor.CanBuy(cmbShopList.SelectedIndex) == true)
             {
                 btnBuy.Enabled = true;

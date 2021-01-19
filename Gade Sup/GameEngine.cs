@@ -10,7 +10,7 @@ namespace Gade_Sup
     {
 
         private Map gameMap;
-        private string empty = ". ", obsticale = "X", gold = " * ", weapon = "w", hero = "H", leader = "L", goblin = "G", mage = "M";
+        private string empty = ".", obsticale = "X", gold = "*", weapon = "W", hero = "H", leader = "L", goblin = "G", mage = "M";
         Hero H;
         Enemy[] Enemies ;
         public Shop Vendor;
@@ -61,15 +61,16 @@ namespace Gade_Sup
                             if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
-                                H.Wallet += 3;
+                                
 
                             }
                         }
-                        H.ToString();
+                        
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     else if (H.Vision[0].NewTile == Tile.TileType.Weapon)
@@ -82,11 +83,12 @@ namespace Gade_Sup
 
                             }
                         }
-                        H.ToString();
+                        
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     break;
@@ -115,6 +117,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     else if (H.Vision[1].NewTile == Tile.TileType.Weapon)
@@ -132,6 +135,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     break;
@@ -143,6 +147,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     else if (H.Vision[2].NewTile == Tile.TileType.Gold)
@@ -161,6 +166,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     else if (H.Vision[2].NewTile == Tile.TileType.Weapon)
@@ -178,6 +184,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     break;
@@ -207,6 +214,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX - 1] = new EmptyTile(H.varY, H.varX - 1);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     else if (H.Vision[3].NewTile == Tile.TileType.Weapon)
@@ -224,6 +232,7 @@ namespace Gade_Sup
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX - 1] = new EmptyTile(H.varY, H.varX - 1);
                         GameMap.UpdateVision();
+                        H.ToString();
                         Value = true;
                     }
                     break;

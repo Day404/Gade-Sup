@@ -51,7 +51,7 @@ namespace Gade_Sup
         {
             bool value = false;
 
-            if (ShopList[Index].Cost < Bot.Wallet)
+            if (ShopList[Index].Cost < Bot.Wallet.GoldDrop)
             {
                 value = true;
             }
@@ -61,8 +61,9 @@ namespace Gade_Sup
 
         public void Buy(int Index)
         {
-            Bot.Wallet = Bot.Wallet - ShopList[Index].Cost;
+            Bot.Wallet.GoldDrop = Bot.Wallet.GoldDrop - ShopList[Index].Cost;
             ShopList[Index] = RandomWeapon();
+            Bot.PickUp(ShopList[Index]);
         }
 
         public string DisplayWeapon(int Index)

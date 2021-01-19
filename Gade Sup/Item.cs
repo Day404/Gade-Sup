@@ -17,14 +17,14 @@ namespace Gade_Sup
 
     class Gold : Item
     {
-        private int goldDrop;
+        private int goldDrop = 0;
         private Random Rng = new Random();
 
-        public int GoldDrop { get => goldDrop;  }
+        public int GoldDrop { get => goldDrop; set => goldDrop = value; }
 
         public Gold(int varY, int varX) : base(varY, varX)
         {
-            goldDrop = Rng.Next(1, 6);
+            goldDrop += 0;
             NewTile = TileType.Gold;
         }
 
@@ -63,7 +63,7 @@ namespace Gade_Sup
     {
         public enum Types {Dagger, Longsword, BareHands }
         public override int Range { get => base.Range; set => base.Range = 1; }
-        public MeleeWeapon(Types DorL ,int varY, int varX) : base(varY, varX)
+        public MeleeWeapon(Types DorL ,int varY = 0, int varX = 0) : base(varY, varX)
         {
             switch (DorL)
             {
@@ -92,7 +92,7 @@ namespace Gade_Sup
     {
         public enum Types {Rifle, Longbow }
         public override int Range { get => base.Range ; set => base.Range = value; }
-        public RangedWeapon(Types RorL, int varY, int varX) : base(varY, varX)
+        public RangedWeapon(Types RorL, int varY = 0, int varX = 0) : base(varY, varX)
         {
             switch (RorL)
             {

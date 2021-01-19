@@ -41,15 +41,18 @@
             this.btnBuy = new System.Windows.Forms.Button();
             this.lblTarget = new System.Windows.Forms.Label();
             this.lblShopList = new System.Windows.Forms.Label();
+            this.lblText = new System.Windows.Forms.Label();
+            this.btnIdle = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMap
             // 
             this.lblMap.AutoSize = true;
             this.lblMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblMap.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMap.Location = new System.Drawing.Point(12, 9);
             this.lblMap.Name = "lblMap";
-            this.lblMap.Size = new System.Drawing.Size(30, 15);
+            this.lblMap.Size = new System.Drawing.Size(51, 25);
             this.lblMap.TabIndex = 0;
             this.lblMap.Text = "Map";
             this.lblMap.Click += new System.EventHandler(this.lblMap_Click);
@@ -57,7 +60,7 @@
             // lblPStats
             // 
             this.lblPStats.AutoSize = true;
-            this.lblPStats.Location = new System.Drawing.Point(444, 11);
+            this.lblPStats.Location = new System.Drawing.Point(285, 9);
             this.lblPStats.Name = "lblPStats";
             this.lblPStats.Size = new System.Drawing.Size(63, 13);
             this.lblPStats.TabIndex = 1;
@@ -66,14 +69,14 @@
             // cmbTargets
             // 
             this.cmbTargets.FormattingEnabled = true;
-            this.cmbTargets.Location = new System.Drawing.Point(447, 144);
+            this.cmbTargets.Location = new System.Drawing.Point(12, 264);
             this.cmbTargets.Name = "cmbTargets";
-            this.cmbTargets.Size = new System.Drawing.Size(121, 21);
+            this.cmbTargets.Size = new System.Drawing.Size(269, 21);
             this.cmbTargets.TabIndex = 2;
             // 
             // btnAtk
             // 
-            this.btnAtk.Location = new System.Drawing.Point(472, 191);
+            this.btnAtk.Location = new System.Drawing.Point(12, 296);
             this.btnAtk.Name = "btnAtk";
             this.btnAtk.Size = new System.Drawing.Size(75, 23);
             this.btnAtk.TabIndex = 3;
@@ -82,7 +85,7 @@
             // 
             // rtbStats
             // 
-            this.rtbStats.Location = new System.Drawing.Point(447, 27);
+            this.rtbStats.Location = new System.Drawing.Point(513, 24);
             this.rtbStats.Name = "rtbStats";
             this.rtbStats.Size = new System.Drawing.Size(246, 96);
             this.rtbStats.TabIndex = 4;
@@ -90,7 +93,7 @@
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(525, 267);
+            this.btnUp.Location = new System.Drawing.Point(591, 206);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 23);
             this.btnUp.TabIndex = 5;
@@ -100,7 +103,7 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(453, 296);
+            this.btnLeft.Location = new System.Drawing.Point(513, 238);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 23);
             this.btnLeft.TabIndex = 6;
@@ -110,7 +113,7 @@
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(597, 296);
+            this.btnRight.Location = new System.Drawing.Point(667, 238);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 23);
             this.btnRight.TabIndex = 7;
@@ -120,7 +123,7 @@
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(525, 325);
+            this.btnDown.Location = new System.Drawing.Point(591, 267);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(75, 23);
             this.btnDown.TabIndex = 8;
@@ -131,7 +134,7 @@
             // cmbShopList
             // 
             this.cmbShopList.FormattingEnabled = true;
-            this.cmbShopList.Location = new System.Drawing.Point(572, 144);
+            this.cmbShopList.Location = new System.Drawing.Point(513, 139);
             this.cmbShopList.Name = "cmbShopList";
             this.cmbShopList.Size = new System.Drawing.Size(121, 21);
             this.cmbShopList.TabIndex = 9;
@@ -139,7 +142,7 @@
             // 
             // btnBuy
             // 
-            this.btnBuy.Location = new System.Drawing.Point(597, 191);
+            this.btnBuy.Location = new System.Drawing.Point(513, 177);
             this.btnBuy.Name = "btnBuy";
             this.btnBuy.Size = new System.Drawing.Size(75, 23);
             this.btnBuy.TabIndex = 10;
@@ -150,7 +153,7 @@
             // lblTarget
             // 
             this.lblTarget.AutoSize = true;
-            this.lblTarget.Location = new System.Drawing.Point(444, 128);
+            this.lblTarget.Location = new System.Drawing.Point(9, 248);
             this.lblTarget.Name = "lblTarget";
             this.lblTarget.Size = new System.Drawing.Size(43, 13);
             this.lblTarget.TabIndex = 11;
@@ -159,17 +162,37 @@
             // lblShopList
             // 
             this.lblShopList.AutoSize = true;
-            this.lblShopList.Location = new System.Drawing.Point(569, 126);
+            this.lblShopList.Location = new System.Drawing.Point(510, 123);
             this.lblShopList.Name = "lblShopList";
             this.lblShopList.Size = new System.Drawing.Size(32, 13);
             this.lblShopList.TabIndex = 12;
             this.lblShopList.Text = "Shop";
+            // 
+            // lblText
+            // 
+            this.lblText.AutoSize = true;
+            this.lblText.Location = new System.Drawing.Point(510, 8);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(53, 13);
+            this.lblText.TabIndex = 13;
+            this.lblText.Text = "Text Chat";
+            // 
+            // btnIdle
+            // 
+            this.btnIdle.Location = new System.Drawing.Point(591, 238);
+            this.btnIdle.Name = "btnIdle";
+            this.btnIdle.Size = new System.Drawing.Size(75, 23);
+            this.btnIdle.TabIndex = 14;
+            this.btnIdle.Text = "Idle";
+            this.btnIdle.UseVisualStyleBackColor = true;
             // 
             // frmDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnIdle);
+            this.Controls.Add(this.lblText);
             this.Controls.Add(this.lblShopList);
             this.Controls.Add(this.lblTarget);
             this.Controls.Add(this.btnBuy);
@@ -205,6 +228,8 @@
         private System.Windows.Forms.Button btnBuy;
         private System.Windows.Forms.Label lblTarget;
         private System.Windows.Forms.Label lblShopList;
+        private System.Windows.Forms.Label lblText;
+        private System.Windows.Forms.Button btnIdle;
     }
 }
 

@@ -9,38 +9,43 @@ namespace Gade_Sup
     abstract class Character : Tile
     {
         protected int maxHp;
-        protected int wallet;
+        //protected int wallet;
         protected Tile[] vision = new Tile[8];
         protected int hp;
         protected int dmg;
+        protected string loots;
         protected Weapon floor;
-        public int Wallet { get => wallet; set => wallet = value; }
+        protected Gold wallet;
+        public Gold Wallet { get => wallet; set => wallet = value; }
         public Tile[] Vision { get => vision; set => vision = value; }
         public int Hp { get => hp; set => hp = value; }
         public int Dmg { get => dmg; set => dmg = value; }
         public int MaxHp { get => maxHp; set => maxHp = value; }
+        public string Loots { get => loots; set => loots = value; }
         public Weapon Floor { get => floor; set => floor = value; }
 
         public enum Movement { Up, Down, Left, Right, Idle }
         public Character(int varY, int varX) : base(varY, varX)
         {
-           
+            wallet = new Gold(0,0);
+        }
+        public void Loot(Character Target)
+        {
+            wallet.GoldDrop += Target.wallet.GoldDrop;
+            floor = Target.floor;
+            loots = "Just Looted " + floor.Wtype;
         }
         private void Equip(Weapon W)
         {
             Floor = W;
+            this.dmg = W.Dmg;
         }
         public void PickUp(Item Item)
         {
+            Random Ran = new Random();
             if (Item.NewTile == TileType.Gold)
             {
-                //var Gold = new Gold(Item.varY, Item.varX);
-
-                //wallet += Gold.GoldDrop;
-                Random Ran = new Random();
-
-                wallet += Ran.Next(1, 6);
-                
+                Wallet.GoldDrop += Ran.Next(1, 6);            
             }
             if (Item.NewTile == TileType.Weapon)
             {
@@ -49,7 +54,7 @@ namespace Gade_Sup
         }
         public virtual void Attack(Character Target)
         {
-            Target.Hp = Target.Hp - Dmg;
+            Target.Hp -= floor.Dmg;
         }
 
         public bool IsDead()
@@ -115,11 +120,12 @@ namespace Gade_Sup
         public Hero(int Hp, int varY, int varX) : base(varY, varX)
         {
             NewTile = TileType.Hero;
-            wallet = 0;
+            wallet.GoldDrop += 12 ;
             hp = Hp;
             maxHp = Hp;
-            floor = new MeleeWeapon(MeleeWeapon.Types.BareHands, varY, varX);
-            dmg = floor.Dmg;
+            floor = new MeleeWeapon(MeleeWeapon.Types.BareHands);
+            
+            
         }
 
         public override Movement ReturnMove(Movement Move)
@@ -137,21 +143,21 @@ namespace Gade_Sup
         public override string ToString()
         {
             string Text = "";
-            Text = "\nPlayer Stats:\nHp: "
+            Text = "Player Stats:\nHp: "
                    + hp
                    + "/"
                    + maxHp
                    + "\nCurrent Weapon: "
-                   + floor.GetType().Name
+                   + floor.Wtype
                    + "\nWeapon Damage: "
-                   + dmg
+                   + floor.Dmg
                    + "\nGold: "
-                   + wallet
+                   + wallet.GoldDrop
                    + "\n["
                    + varX
                    + ","
                    + varY
-                   + "]";
+                   + "]\n";
             return Text;
 
         }
@@ -169,8 +175,8 @@ namespace Gade_Sup
         }
 
         public override string ToString()
-        {
-            string Text = "\n"+ this.GetType().Name + " at " + "\n[" + varX + "," + varY + "](Damage: " + dmg + ")";
+        {            
+            string Text = "\n" + floor.Wtype +": " + this.GetType().Name +"("+ hp + "/" + maxHp +")"+ " at " + "\n[" + varX + "," + varY + "](Damage: " + floor.Dmg + ")";
             return Text;
         }
     }
@@ -181,7 +187,8 @@ namespace Gade_Sup
         {
             NewTile = TileType.Goblin;
             maxHp = Hp;
-            
+            wallet.GoldDrop = 1;
+            floor = new MeleeWeapon(MeleeWeapon.Types.Dagger);
         }
 
         public override Movement ReturnMove(Movement Move)
@@ -201,7 +208,7 @@ namespace Gade_Sup
         {
             NewTile = TileType.Mage;
             maxHp = Hp;
-            
+            wallet.GoldDrop = 3;
         }
 
         public override bool CheckRange(Character Target)
@@ -230,26 +237,13 @@ namespace Gade_Sup
         {
             NewTile = TileType.Leader;
             maxHp = Hp;
+            wallet.GoldDrop = 2;
+            floor = new MeleeWeapon(MeleeWeapon.Types.Longsword);
         }
 
         public override Movement ReturnMove(Movement Move)
         {
-            //if (leadTarget.varY < varY && vision[0].NewTile == TileType.EmptyTile)
-            //{
-            //    return Movement.Up;
-            //}
-            //if (leadTarget.varY > varY && vision[1].NewTile == TileType.EmptyTile)
-            //{
-            //    return Movement.Down;
-            //}
-            //if (leadTarget.varX < varX && vision[2].NewTile == TileType.EmptyTile)
-            //{
-            //    return Movement.Left;
-            //}
-            //if (leadTarget.varX > varX && vision[3].NewTile == TileType.EmptyTile)
-            //{
-            //    return Movement.Right;
-            //}
+            
             Movement Value = Movement.Idle;
 
             switch (Move)
