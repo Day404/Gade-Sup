@@ -154,7 +154,7 @@ namespace Gade_Sup
 
         public override string ToString()
         {
-            string Text = "\n" + nameof(Enemy) + " at " + "\n[" + varX + "," + varY + "](Damage: " + dmg + ")";
+            string Text = "\n"+ this.GetType().Name + " at " + "\n[" + varX + "," + varY + "](Damage: " + dmg + ")";
             return Text;
         }
     }

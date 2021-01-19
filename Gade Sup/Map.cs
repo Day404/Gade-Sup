@@ -15,15 +15,16 @@ namespace Gade_Sup
         private Item[] items;
         private int ItemIndex = 0;
         private Tile Spawn;
-        private Enemy[] Enemies;
+        private Enemy[] enemies;
         public int Width { get => width;  }
         public int Height { get => height;  }
         public Tile[,] MapDisplay { get => mapDisplay; set => mapDisplay = value; }
-        internal Item[] Items { get => items; set => items = value; }
+        public Item[] Items { get => items; set => items = value; }
+        public Enemy[] Enemies { get => enemies; set => enemies = value; }
 
         public Map(int MinX, int MaxX, int MinY, int MaxY, int GoldDrops, int WeaponDrops, int EnemyNo)
         {
-            Enemies = new Enemy[EnemyNo];
+            enemies = new Enemy[EnemyNo];
             Items = new Item[GoldDrops + WeaponDrops];
             this.height = Rng.Next(MinY, MaxY + 1);
             this.width = Rng.Next(MinX, MaxX + 1);

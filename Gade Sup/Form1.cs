@@ -66,7 +66,15 @@ namespace Gade_Sup
             }
             
         }
-        
+        public void TargetsUpdate()
+        {
+            cmbTargets.Items.Clear();
+            for (int i = 0; i < Engine.GameMap.Enemies.Length; i++)
+            {
+                cmbTargets.Items.Add(Engine.GameMap.Enemies[i]);
+            }
+            
+        }
         public void DisplayMap()
         {
             lblMap.Text = "";
@@ -110,6 +118,7 @@ namespace Gade_Sup
                     
                 }
                 lblMap.Text += "\n";
+                TargetsUpdate();
             }
         }
 
@@ -122,6 +131,7 @@ namespace Gade_Sup
         private void btnUp_Click(object sender, EventArgs e)
         {
             Engine.Move(Character.Movement.Up);
+            Engine.EnemyMove();
             DisplayMap();
             StatUpdate();
         }
@@ -131,6 +141,7 @@ namespace Gade_Sup
             Engine.Move(Character.Movement.Left);
             DisplayMap();
             StatUpdate();
+            Engine.EnemyMove();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
@@ -138,6 +149,7 @@ namespace Gade_Sup
             Engine.Move(Character.Movement.Down);
             DisplayMap();
             StatUpdate();
+            Engine.EnemyMove();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
@@ -145,6 +157,7 @@ namespace Gade_Sup
             Engine.Move(Character.Movement.Right);
             DisplayMap();
             StatUpdate();
+            Engine.EnemyMove();
         }
 
         private void btnBuy_Click(object sender, EventArgs e)

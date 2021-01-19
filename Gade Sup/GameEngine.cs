@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace Gade_Sup
 {
-    class GameEngine 
+    class GameEngine
     {
-        
-        private Map gameMap;       
+
+        private Map gameMap;
         private string empty = ". ", obsticale = "X", gold = " * ", weapon = "w", hero = "H", leader = "L", goblin = "G", mage = "M";
         Hero H;
+        Enemy[] Enemies = new Enemy[5];
         public Shop Vendor;
-
+        private Random Ran = new Random();
         public Map GameMap { get => gameMap; set => gameMap = value; }
-        public string Empty { get => empty;  }
+        public string Empty { get => empty; }
         public string Obsticale { get => obsticale; }
-        public string Gold { get => gold;  }
-        public string Weapon { get => weapon;  }
-        public string Hero { get => hero;  }
+        public string Gold { get => gold; }
+        public string Weapon { get => weapon; }
+        public string Hero { get => hero; }
         public string Leader { get => leader; }
         public string Goblin { get => goblin; }
         public string Mage { get => mage; }
@@ -27,9 +28,14 @@ namespace Gade_Sup
         public GameEngine()
         {
             
+            
             GameMap = new Map(14, 14, 8, 8, 6, 3, 5);
             H = GameMap.H;
             Vendor = new Shop(H);
+            for (int i = 0; i < GameMap.Enemies.Length; i++)
+            {
+                Enemies[i] = GameMap.Enemies[i];
+            }
         }
 
         public bool Move(Character.Movement Move)
@@ -43,7 +49,7 @@ namespace Gade_Sup
                     {
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
+                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
                         GameMap.UpdateVision();
                         Value = true;
                     }
@@ -51,17 +57,17 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)                          
+                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
                                 H.Wallet += 3;
-                            
+
                             }
                         }
                         H.ToString();
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
+                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
                         GameMap.UpdateVision();
                         Value = true;
                     }
@@ -83,7 +89,7 @@ namespace Gade_Sup
                         Value = true;
                     }
                     break;
-                    /////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Down:
                     if (H.Vision[1].NewTile == Tile.TileType.EmptyTile)
                     {
@@ -103,7 +109,7 @@ namespace Gade_Sup
 
                             }
                         }
-                        
+
                         H.Move(Character.Movement.Down);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
@@ -120,7 +126,7 @@ namespace Gade_Sup
 
                             }
                         }
-                        
+
                         H.Move(Character.Movement.Down);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
@@ -128,13 +134,13 @@ namespace Gade_Sup
                         Value = true;
                     }
                     break;
-                    /////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Left:
                     if (H.Vision[2].NewTile == Tile.TileType.EmptyTile)
                     {
                         H.Move(Character.Movement.Left);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY , H.varX + 1);
+                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
                         Value = true;
                     }
@@ -145,14 +151,14 @@ namespace Gade_Sup
                             if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
-                                
+
 
                             }
                         }
-                        
+
                         H.Move(Character.Movement.Left);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY , H.varX + 1] = new EmptyTile(H.varY , H.varX + 1);
+                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
                         Value = true;
                     }
@@ -166,15 +172,15 @@ namespace Gade_Sup
 
                             }
                         }
-                        
+
                         H.Move(Character.Movement.Left);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY , H.varX + 1);
+                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
                         Value = true;
                     }
                     break;
-                    /////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Right:
                     if (H.Vision[3].NewTile == Tile.TileType.EmptyTile)
                     {
@@ -220,15 +226,86 @@ namespace Gade_Sup
                         Value = true;
                     }
                     break;
-                    /////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Idle:
                     GameMap.UpdateVision();
                     Value = false;
                     break;
-                
+
             }
 
             return Value;
+        }
+
+        public void EnemyMove()
+        {
+            for (int i = 0; i < Enemies.Length; i++)
+            {
+                EnemyMove(Enemies[i].NewTile, i);
+            }
+        }
+        private void EnemyMove(Tile.TileType Type, int Index)
+        {
+
+            switch (Type)
+            {
+                case Tile.TileType.Leader:
+                    break;
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                case Tile.TileType.Goblin:
+                    switch (Ran.Next(0, 4))
+                    {
+                        case 0:
+                            if (Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile)
+                            {
+                                Enemies[Index].Move(Character.Movement.Up);
+                                GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
+                                GameMap.MapDisplay[Enemies[Index].varY + 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY + 1, Enemies[Index].varX);
+                                GameMap.UpdateVision();
+                                
+                            }
+                            break;
+                            ///////////////////////////////////////////////////////////////////////////
+                        case 1:
+                            if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile)
+                            {
+                                Enemies[Index].Move(Character.Movement.Down);
+                                GameMap.MapDisplay[Enemies[Index].varY, H.varX] = Enemies[Index];
+                                GameMap.MapDisplay[Enemies[Index].varY - 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY - 1, Enemies[Index].varX);
+                                GameMap.UpdateVision();
+                                
+                            }
+                            break;
+                            ///////////////////////////////////////////////////////////////////////////
+                        case 2:
+                            if (Enemies[Index].Vision[2].NewTile == Tile.TileType.EmptyTile)
+                            {
+                                Enemies[Index].Move(Character.Movement.Left);
+                                GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
+                                GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX + 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX + 1);
+                                GameMap.UpdateVision();
+                                
+                            }
+                            break;
+                            ///////////////////////////////////////////////////////////////////////////
+                        case 3:
+                            if (Enemies[Index].Vision[3].NewTile == Tile.TileType.EmptyTile)
+                            {
+                                Enemies[Index].Move(Character.Movement.Right);
+                                GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
+                                GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX - 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX - 1);
+                                GameMap.UpdateVision();
+                                
+                            }
+                            break;
+
+                    }
+                    break;
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                case Tile.TileType.Mage:
+                    break;
+            }
+
         }
        
     }
