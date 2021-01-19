@@ -13,7 +13,7 @@ namespace Gade_Sup
         protected Tile[] vision = new Tile[8];
         protected int hp;
         protected int dmg;
-
+        protected Weapon Floor ;
         public int Wallet { get => wallet; set => wallet = value; }
         public Tile[] Vision { get => vision; set => vision = value; }
         public int Hp { get => hp; set => hp = value; }
@@ -23,7 +23,28 @@ namespace Gade_Sup
         public enum Movement { Up, Down, Left, Right, Idle }
         public Character(int varY, int varX) : base(varY, varX)
         {
-            
+           
+        }
+        private void Equip(Weapon W)
+        {
+            Floor = W;
+        }
+        public void PickUp(Item Item)
+        {
+            if (Item.NewTile == TileType.Gold)
+            {
+                //var Gold = new Gold(Item.varY, Item.varX);
+
+                //wallet += Gold.GoldDrop;
+                Random Ran = new Random();
+
+                wallet += Ran.Next(1, 6);
+                
+            }
+            if (Item.NewTile == TileType.Weapon)
+            {
+                Equip((Weapon)Item);
+            }
         }
         public virtual void Attack(Character Target)
         {
@@ -75,10 +96,10 @@ namespace Gade_Sup
                     varY++;
                     break;
                 case Movement.Left:
-                    varX++;
+                    varX--;
                     break;
                 case Movement.Right:
-                    varX--;
+                    varX++;
                     break;
             }
         }
@@ -93,7 +114,7 @@ namespace Gade_Sup
         public Hero(int Hp, int varY, int varX) : base(varY, varX)
         {
             NewTile = TileType.Hero;
-            wallet = 12;
+            //wallet = 0;
             hp = Hp;
             maxHp = Hp;
             dmg = 2;

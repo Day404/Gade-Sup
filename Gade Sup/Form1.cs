@@ -27,6 +27,8 @@ namespace Gade_Sup
             ShopUpdate();
             DisplayMap();
             btnBuy.Enabled = false;
+
+            
         }
 
         public void StatUpdate()
@@ -121,22 +123,28 @@ namespace Gade_Sup
         {
             Engine.Move(Character.Movement.Up);
             DisplayMap();
-
+            StatUpdate();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-
+            Engine.Move(Character.Movement.Left);
+            DisplayMap();
+            StatUpdate();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-
+            Engine.Move(Character.Movement.Down);
+            DisplayMap();
+            StatUpdate();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-
+            Engine.Move(Character.Movement.Right);
+            DisplayMap();
+            StatUpdate();
         }
 
         private void btnBuy_Click(object sender, EventArgs e)

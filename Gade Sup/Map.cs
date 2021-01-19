@@ -12,13 +12,14 @@ namespace Gade_Sup
         private int width, height;
         private Random Rng = new Random();
         public Hero H;
-        private Item[] Items;
+        private Item[] items;
         private int ItemIndex = 0;
         private Tile Spawn;
         private Enemy[] Enemies;
         public int Width { get => width;  }
         public int Height { get => height;  }
         public Tile[,] MapDisplay { get => mapDisplay; set => mapDisplay = value; }
+        internal Item[] Items { get => items; set => items = value; }
 
         public Map(int MinX, int MaxX, int MinY, int MaxY, int GoldDrops, int WeaponDrops, int EnemyNo)
         {
@@ -72,7 +73,7 @@ namespace Gade_Sup
         {
             H.Vision[0] = MapDisplay[H.varY - 1, H.varX];
             H.Vision[1] = MapDisplay[H.varY + 1, H.varX];
-            H.Vision[2] = MapDisplay[H.varY , H.varX -1];
+            H.Vision[2] = MapDisplay[H.varY , H.varX - 1];
             H.Vision[3] = MapDisplay[H.varY , H.varX + 1];
             H.Vision[4] = MapDisplay[H.varY - 1 , H.varX - 1];
             H.Vision[5] = MapDisplay[H.varY + 1 , H.varX - 1];
