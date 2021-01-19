@@ -68,19 +68,21 @@ namespace Gade_Sup
             switch (DorL)
             {
                 case Types.Dagger:
-                    
+                    range = 1;
                     dmg = 3;
                     dur = 10;
                     cost = 3;
                     wtype = "Dagger";
                     break;
                 case Types.Longsword:
+                    range = 1;
                     dmg = 4;
                     dur = 6;
                     cost = 5;
                     wtype = "Longsword";
                     break;
                 case Types.BareHands:
+                    range = 1;
                     dmg = 2;
                     wtype = "Bare Hands";
                     break;

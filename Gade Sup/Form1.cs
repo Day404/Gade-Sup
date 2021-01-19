@@ -33,6 +33,7 @@ namespace Gade_Sup
 
         public void StatUpdate()
         {
+            lblPStats.Text = "";
             lblPStats.Text += H.ToString();
         }
          
@@ -166,6 +167,27 @@ namespace Gade_Sup
             {
                 btnBuy.Enabled = false;
             }
+        }
+
+        private void btnAtk_Click(object sender, EventArgs e)
+        {
+            H.Attack((Character)cmbTargets.SelectedItem);
+            rtbStats.Text += "Attack Sucessfylly\n";
+            DisplayMap();
+            StatUpdate();
+            Engine.EnemyMove();
+            //if (cmbTargets.SelectedItem == null)
+            //{
+            //    MessageBox.Show("No target selected");
+            //}
+            //else if ( H.CheckRange((Character)cmbTargets.SelectedItem) == true)
+            //{
+            //    H.Attack((Character)cmbTargets.SelectedItem);
+            //    rtbStats.Text += "Attack Sucessfylly\n";
+            //    DisplayMap();
+            //    StatUpdate();
+            //    Engine.EnemyMove();
+            //}
         }
     }
 }

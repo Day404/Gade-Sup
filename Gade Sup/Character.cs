@@ -149,8 +149,12 @@ namespace Gade_Sup
                    + maxHp
                    + "\nCurrent Weapon: "
                    + floor.Wtype
+                   + "\nWeapon Range: "
+                   + floor.Range
                    + "\nWeapon Damage: "
                    + floor.Dmg
+                   + "\nDurability: "
+                   + floor.Dur
                    + "\nGold: "
                    + wallet.GoldDrop
                    + "\n["
@@ -176,7 +180,23 @@ namespace Gade_Sup
 
         public override string ToString()
         {            
-            string Text = "\n" + floor.Wtype +": " + this.GetType().Name +"("+ hp + "/" + maxHp +")"+ " at " + "\n[" + varX + "," + varY + "](Damage: " + floor.Dmg + ")";
+            string Text = "\n"
+                          + floor.Wtype
+                          + ": "
+                          + this.GetType().Name
+                          + "("
+                          + hp
+                          + "/"
+                          + maxHp
+                          + ")"
+                          + " at "
+                          + "\n["
+                          + varX
+                          + ","
+                          + varY
+                          + "](Damage: "
+                          + floor.Dmg
+                          + ")";
             return Text;
         }
     }
@@ -209,6 +229,7 @@ namespace Gade_Sup
             NewTile = TileType.Mage;
             maxHp = Hp;
             wallet.GoldDrop = 3;
+            floor = new MeleeWeapon(MeleeWeapon.Types.BareHands);
         }
 
         public override bool CheckRange(Character Target)

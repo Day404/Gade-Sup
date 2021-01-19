@@ -82,6 +82,7 @@
             this.btnAtk.TabIndex = 3;
             this.btnAtk.Text = "Attack";
             this.btnAtk.UseVisualStyleBackColor = true;
+            this.btnAtk.Click += new System.EventHandler(this.btnAtk_Click);
             // 
             // rtbStats
             // 
