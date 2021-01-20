@@ -186,6 +186,7 @@
             this.btnIdle.TabIndex = 14;
             this.btnIdle.Text = "Idle";
             this.btnIdle.UseVisualStyleBackColor = true;
+            this.btnIdle.Click += new System.EventHandler(this.btnIdle_Click);
             // 
             // frmDisplay
             // 

@@ -90,7 +90,7 @@ namespace Gade_Sup
                 Enemies[i].Vision[4] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX - 1];
                 Enemies[i].Vision[5] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX - 1];
                 Enemies[i].Vision[6] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX + 1];
-                Enemies[i].Vision[7] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX - 1];
+                Enemies[i].Vision[7] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX + 1];
             }
         }
 

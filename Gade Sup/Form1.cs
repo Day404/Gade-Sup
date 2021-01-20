@@ -148,6 +148,13 @@ namespace Gade_Sup
             StatUpdate();
             Engine.EnemyMove();
         }
+        private void btnIdle_Click(object sender, EventArgs e)
+        {
+            Engine.Move(Character.Movement.Idle);
+            DisplayMap();
+            StatUpdate();
+            Engine.EnemyMove();
+        }
 
         private void btnBuy_Click(object sender, EventArgs e)
         {
@@ -189,5 +196,7 @@ namespace Gade_Sup
             //    Engine.EnemyMove();
             //}
         }
+
+        
     }
 }

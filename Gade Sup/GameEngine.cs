@@ -51,6 +51,7 @@ namespace Gade_Sup
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
+                        
                         GameMap.UpdateVision();
                         Value = true;
                     }
@@ -58,17 +59,19 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY + 1 == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
-                                
+                                //H.Wallet.GoldDrop += Ran.Next(1, 6);
+
 
                             }
                         }
                         
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
+                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
+                        
                         GameMap.UpdateVision();
                         H.ToString();
                         Value = true;
@@ -77,7 +80,7 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY + 1 == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
 
@@ -86,7 +89,8 @@ namespace Gade_Sup
                         
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
+                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
+                        
                         GameMap.UpdateVision();
                         H.ToString();
                         Value = true;
@@ -106,16 +110,16 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY -1 == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
-
+                                //H.Wallet.GoldDrop += Ran.Next(1, 6);
                             }
                         }
 
                         H.Move(Character.Movement.Down);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
+                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
                         GameMap.UpdateVision();
                         H.ToString();
                         Value = true;
@@ -124,7 +128,7 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY - 1 == H.varY && GameMap.Items[i].varX == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
 
@@ -133,7 +137,7 @@ namespace Gade_Sup
 
                         H.Move(Character.Movement.Down);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
+                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
                         GameMap.UpdateVision();
                         H.ToString();
                         Value = true;
@@ -154,10 +158,10 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX +1 == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
-
+                                //H.Wallet.GoldDrop += Ran.Next(1, 6);
 
                             }
                         }
@@ -173,7 +177,7 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX + 1 == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
 
@@ -202,10 +206,10 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX - 1 == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
-
+                                H.Wallet.GoldDrop += Ran.Next(1, 6);
 
                             }
                         }
@@ -221,7 +225,7 @@ namespace Gade_Sup
                     {
                         for (int i = 0; i < GameMap.Items.Length; i++)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX == H.varX)
+                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX -1 == H.varX)
                             {
                                 H.PickUp(GameMap.Items[i]);
 
@@ -311,7 +315,7 @@ namespace Gade_Sup
                                 if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile)
                                 {
                                     Enemies[Index].Move(Character.Movement.Down);
-                                    GameMap.MapDisplay[Enemies[Index].varY, H.varX] = Enemies[Index];
+                                    GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                     GameMap.MapDisplay[Enemies[Index].varY - 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY - 1, Enemies[Index].varX);
                                     GameMap.UpdateVision();
 
@@ -363,7 +367,7 @@ namespace Gade_Sup
                             if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile)
                             {
                                 Enemies[Index].Move(Character.Movement.Down);
-                                GameMap.MapDisplay[Enemies[Index].varY, H.varX] = Enemies[Index];
+                                GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                 GameMap.MapDisplay[Enemies[Index].varY - 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY - 1, Enemies[Index].varX);
                                 GameMap.UpdateVision();
                                 

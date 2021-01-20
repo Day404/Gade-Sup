@@ -62,8 +62,9 @@ namespace Gade_Sup
         public void Buy(int Index)
         {
             Bot.Wallet.GoldDrop = Bot.Wallet.GoldDrop - ShopList[Index].Cost;
-            ShopList[Index] = RandomWeapon();
             Bot.PickUp(ShopList[Index]);
+            ShopList[Index] = RandomWeapon();
+            
         }
 
         public string DisplayWeapon(int Index)

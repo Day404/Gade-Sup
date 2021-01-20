@@ -33,7 +33,7 @@ namespace Gade_Sup
         {
             wallet.GoldDrop += Target.wallet.GoldDrop;
             floor = Target.floor;
-            loots = "Just Looted " + floor.Wtype;
+            Loots = "Just Looted " + floor.Wtype;
         }
         private void Equip(Weapon W)
         {
@@ -45,21 +45,28 @@ namespace Gade_Sup
             Random Ran = new Random();
             if (Item.NewTile == TileType.Gold)
             {
-                Wallet.GoldDrop += Ran.Next(1, 6);            
+                Wallet.GoldDrop += Ran.Next(1, 6);
+                
             }
             if (Item.NewTile == TileType.Weapon)
             {
                 Equip((Weapon)Item);
+                
             }
         }
         public virtual void Attack(Character Target)
         {
             Target.Hp -= floor.Dmg;
+            if(IsDead(Target) == true)
+            {
+                Loot(Target);
+                
+            }
         }
 
-        public bool IsDead()
+        public bool IsDead(Character Target)
         {
-            if (Hp < 1)
+            if (Target.Hp < 1)
             {
                 return true;
             }
@@ -96,16 +103,16 @@ namespace Gade_Sup
                     varX = varX;
                     break;
                 case Movement.Up:
-                    varY--;
+                    varY = varY -1;
                     break;
                 case Movement.Down:
-                    varY++;
+                    varY = varY +1;
                     break;
                 case Movement.Left:
-                    varX--;
+                    varX = varX -1;
                     break;
                 case Movement.Right:
-                    varX++;
+                    varX = varX+ 1;
                     break;
             }
         }
