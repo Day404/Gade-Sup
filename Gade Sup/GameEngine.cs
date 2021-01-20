@@ -46,199 +46,144 @@ namespace Gade_Sup
             switch (Move)
             {
                 case Character.Movement.Up:
-                    if (H.Vision[0].NewTile == Tile.TileType.EmptyTile)
+                    if (H.Vision[0].NewTile == Tile.TileType.EmptyTile || H.Vision[0].NewTile == Tile.TileType.Gold || H.Vision[0].NewTile == Tile.TileType.Weapon)
                     {
-                        H.Move(Character.Movement.Up);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
-                        
-                        GameMap.UpdateVision();
-                        Value = true;
-                    }
-                    else if (H.Vision[0].NewTile == Tile.TileType.Gold)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
+                        if (H.Vision[0].NewTile == Tile.TileType.Gold)
                         {
-                            if (GameMap.Items[i].varY + 1 == H.varY && GameMap.Items[i].varX == H.varX)
+                            for (int i = 0; i < GameMap.Items.Length; i++)
                             {
-                                H.PickUp(GameMap.Items[i]);
-                                //H.Wallet.GoldDrop += Ran.Next(1, 6);
+                                if (GameMap.Items[i].varY + 1 == H.varY && GameMap.Items[i].varX == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
+                                    //H.Wallet.GoldDrop += Ran.Next(1, 6);
 
 
+                                }
                             }
                         }
-                        
-                        H.Move(Character.Movement.Up);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
-                        
-                        GameMap.UpdateVision();
-                        H.ToString();
-                        Value = true;
-                    }
-                    else if (H.Vision[0].NewTile == Tile.TileType.Weapon)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
+                        else if (H.Vision[0].NewTile == Tile.TileType.Weapon)
                         {
-                            if (GameMap.Items[i].varY + 1 == H.varY && GameMap.Items[i].varX == H.varX)
+                            for (int i = 0; i < GameMap.Items.Length; i++)
                             {
-                                H.PickUp(GameMap.Items[i]);
+                                if (GameMap.Items[i].varY + 1 == H.varY && GameMap.Items[i].varX == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
 
+                                }
                             }
                         }
-                        
                         H.Move(Character.Movement.Up);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
-                        
+                        GameMap.MapDisplay[H.varY + 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);                       
                         GameMap.UpdateVision();
-                        H.ToString();
                         Value = true;
                     }
+
                     break;
-                /////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Down:
-                    if (H.Vision[1].NewTile == Tile.TileType.EmptyTile)
+                    if (H.Vision[1].NewTile == Tile.TileType.EmptyTile || H.Vision[1].NewTile == Tile.TileType.Gold || H.Vision[1].NewTile == Tile.TileType.Weapon)
                     {
+                        if (H.Vision[1].NewTile == Tile.TileType.Gold)
+                        {
+                            for (int i = 0; i < GameMap.Items.Length; i++)
+                            {
+                                if (GameMap.Items[i].varY - 1 == H.varY && GameMap.Items[i].varX == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
+                                    //H.Wallet.GoldDrop += Ran.Next(1, 6);
+                                }
+                            }
+                        }
+                        else if (H.Vision[1].NewTile == Tile.TileType.Weapon)
+                        {
+                            for (int i = 0; i < GameMap.Items.Length; i++)
+                            {
+                                if (GameMap.Items[i].varY - 1 == H.varY && GameMap.Items[i].varX == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
+
+                                }
+                            }
+                        }
                         H.Move(Character.Movement.Down);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY + 1, H.varX);
                         GameMap.UpdateVision();
                         Value = true;
                     }
-                    else if (H.Vision[1].NewTile == Tile.TileType.Gold)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
-                        {
-                            if (GameMap.Items[i].varY -1 == H.varY && GameMap.Items[i].varX == H.varX)
-                            {
-                                H.PickUp(GameMap.Items[i]);
-                                //H.Wallet.GoldDrop += Ran.Next(1, 6);
-                            }
-                        }
-
-                        H.Move(Character.Movement.Down);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
-                        GameMap.UpdateVision();
-                        H.ToString();
-                        Value = true;
-                    }
-                    else if (H.Vision[1].NewTile == Tile.TileType.Weapon)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
-                        {
-                            if (GameMap.Items[i].varY - 1 == H.varY && GameMap.Items[i].varX == H.varX)
-                            {
-                                H.PickUp(GameMap.Items[i]);
-
-                            }
-                        }
-
-                        H.Move(Character.Movement.Down);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY - 1, H.varX] = new EmptyTile(H.varY - 1, H.varX);
-                        GameMap.UpdateVision();
-                        H.ToString();
-                        Value = true;
-                    }
+                   
                     break;
-                /////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Left:
-                    if (H.Vision[2].NewTile == Tile.TileType.EmptyTile)
+                    if (H.Vision[2].NewTile == Tile.TileType.EmptyTile || H.Vision[2].NewTile == Tile.TileType.Gold || H.Vision[2].NewTile == Tile.TileType.Weapon)
                     {
-                        H.Move(Character.Movement.Left);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
-                        GameMap.UpdateVision();
-                        H.ToString();
-                        Value = true;
-                    }
-                    else if (H.Vision[2].NewTile == Tile.TileType.Gold)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
+                        if (H.Vision[2].NewTile == Tile.TileType.Gold)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX +1 == H.varX)
+                            for (int i = 0; i < GameMap.Items.Length; i++)
                             {
-                                H.PickUp(GameMap.Items[i]);
-                                //H.Wallet.GoldDrop += Ran.Next(1, 6);
+                                if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX + 1 == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
+                                    //H.Wallet.GoldDrop += Ran.Next(1, 6);
 
+                                }
                             }
                         }
-
-                        H.Move(Character.Movement.Left);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
-                        GameMap.UpdateVision();
-                        H.ToString();
-                        Value = true;
-                    }
-                    else if (H.Vision[2].NewTile == Tile.TileType.Weapon)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
+                        else if (H.Vision[2].NewTile == Tile.TileType.Weapon)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX + 1 == H.varX)
+                            for (int i = 0; i < GameMap.Items.Length; i++)
                             {
-                                H.PickUp(GameMap.Items[i]);
+                                if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX + 1 == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
 
+                                }
                             }
                         }
-
-                        H.Move(Character.Movement.Left);
+                            H.Move(Character.Movement.Left);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX + 1] = new EmptyTile(H.varY, H.varX + 1);
                         GameMap.UpdateVision();
                         H.ToString();
                         Value = true;
                     }
+                    
                     break;
-                /////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Right:
-                    if (H.Vision[3].NewTile == Tile.TileType.EmptyTile)
+                    if (H.Vision[3].NewTile == Tile.TileType.EmptyTile || H.Vision[3].NewTile == Tile.TileType.Gold || H.Vision[3].NewTile == Tile.TileType.Weapon)
                     {
-                        H.Move(Character.Movement.Right);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY, H.varX - 1] = new EmptyTile(H.varY, H.varX - 1);
-                        GameMap.UpdateVision();
-                        Value = true;
-                    }
-                    else if (H.Vision[3].NewTile == Tile.TileType.Gold)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
+                        if (H.Vision[3].NewTile == Tile.TileType.Gold)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX - 1 == H.varX)
+                            for (int i = 0; i < GameMap.Items.Length; i++)
                             {
-                                H.PickUp(GameMap.Items[i]);
-                                H.Wallet.GoldDrop += Ran.Next(1, 6);
+                                if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX - 1 == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
+                                    H.Wallet.GoldDrop += Ran.Next(1, 6);
 
+                                }
                             }
                         }
-
-                        H.Move(Character.Movement.Right);
-                        GameMap.MapDisplay[H.varY, H.varX] = H;
-                        GameMap.MapDisplay[H.varY, H.varX - 1] = new EmptyTile(H.varY, H.varX - 1);
-                        GameMap.UpdateVision();
-                        H.ToString();
-                        Value = true;
-                    }
-                    else if (H.Vision[3].NewTile == Tile.TileType.Weapon)
-                    {
-                        for (int i = 0; i < GameMap.Items.Length; i++)
+                        else if (H.Vision[3].NewTile == Tile.TileType.Weapon)
                         {
-                            if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX -1 == H.varX)
+                            for (int i = 0; i < GameMap.Items.Length; i++)
                             {
-                                H.PickUp(GameMap.Items[i]);
+                                if (GameMap.Items[i].varY == H.varY && GameMap.Items[i].varX - 1 == H.varX)
+                                {
+                                    H.PickUp(GameMap.Items[i]);
 
+                                }
                             }
                         }
-
-                        H.Move(Character.Movement.Right);
+                            H.Move(Character.Movement.Right);
                         GameMap.MapDisplay[H.varY, H.varX] = H;
                         GameMap.MapDisplay[H.varY, H.varX - 1] = new EmptyTile(H.varY, H.varX - 1);
                         GameMap.UpdateVision();
-                        H.ToString();
                         Value = true;
                     }
+                    
                     break;
                 /////////////////////////////////////////////////////////////////////////////////
                 case Character.Movement.Idle:
