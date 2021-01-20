@@ -67,11 +67,12 @@ namespace Gade_Sup
         public void DisplayMap()
         {
             lblMap.Text = "";
-
+            
             for (int y = 0; y < Engine.GameMap.Height ; y++)
             {
                 for (int x = 0; x < Engine.GameMap.Width ; x++)
                 {
+                    
                     if (Engine.GameMap.MapDisplay[y, x].NewTile == Tile.TileType.EmptyTile)
                     {
                         lblMap.Text += Engine.Empty;
@@ -111,57 +112,46 @@ namespace Gade_Sup
             }
         }
 
-        
-        private void lblMap_Click(object sender, EventArgs e)
+
+        private void MoveButton(Character.Movement Move)
         {
-            
+            Engine.Move(Move);
+            Engine.EnemyMove();
+            DisplayMap();
+            StatUpdate();
         }
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            Engine.Move(Character.Movement.Up);
-            Engine.EnemyMove();
-            DisplayMap();
-            StatUpdate();
+            MoveButton(Character.Movement.Up);
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            Engine.Move(Character.Movement.Left);
-            DisplayMap();
-            StatUpdate();
-            Engine.EnemyMove();
+            MoveButton(Character.Movement.Left);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            Engine.Move(Character.Movement.Down);
-            DisplayMap();
-            StatUpdate();
-            Engine.EnemyMove();
+            MoveButton(Character.Movement.Down);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            Engine.Move(Character.Movement.Right);
-            DisplayMap();
-            StatUpdate();
-            Engine.EnemyMove();
+            MoveButton(Character.Movement.Right);
         }
         private void btnIdle_Click(object sender, EventArgs e)
         {
-            Engine.Move(Character.Movement.Idle);
-            DisplayMap();
-            StatUpdate();
-            Engine.EnemyMove();
+            MoveButton(Character.Movement.Idle);
         }
 
         private void btnBuy_Click(object sender, EventArgs e)
         {
             //GoodGold();
             Engine.Vendor.Buy(cmbShopList.SelectedIndex);
-            StatUpdate();
+            StatUpdate();           
             ShopUpdate();
+            
         }
 
         private void cmbShopList_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -178,25 +168,42 @@ namespace Gade_Sup
 
         private void btnAtk_Click(object sender, EventArgs e)
         {
-            H.Attack((Character)cmbTargets.SelectedItem);
-            rtbStats.Text += "Attack Sucessfylly\n";
-            DisplayMap();
-            StatUpdate();
-            Engine.EnemyMove();
-            //if (cmbTargets.SelectedItem == null)
-            //{
-            //    MessageBox.Show("No target selected");
-            //}
-            //else if ( H.CheckRange((Character)cmbTargets.SelectedItem) == true)
-            //{
-            //    H.Attack((Character)cmbTargets.SelectedItem);
-            //    rtbStats.Text += "Attack Sucessfylly\n";
-            //    DisplayMap();
-            //    StatUpdate();
-            //    Engine.EnemyMove();
-            //}
+            //H.Attack((Character)cmbTargets.SelectedItem);
+            //rtbStats.Text += "Attack Sucessfylly\n";
+            //DisplayMap();
+            //StatUpdate();
+            //Engine.EnemyMove();
+            if (cmbTargets.SelectedItem == null)
+            {
+                MessageBox.Show("No target selected");
+            }
+            else 
+            {
+                H.Attack((Character)cmbTargets.SelectedItem);
+                
+                rtbStats.Text += "Attack Sucessful\n";
+                if (H.IsDead((Character)cmbTargets.SelectedItem) == true)
+                {
+                    rtbStats.Text += H.Dialog;
+                    //for (int i = 0; i < cmbTargets.Items.Count; i++)
+                    //{
+                    //    if (cmbTargets.Items.)
+                    //    {
+
+                    //    }
+                    //    cmbTargets.Items.RemoveAt(i);
+                    //}
+                }
+                DisplayMap();
+                StatUpdate();
+                Engine.EnemyMove();
+            }
+        }
+        private void lblMap_Click(object sender, EventArgs e)
+        {
+
         }
 
-        
+
     }
 }

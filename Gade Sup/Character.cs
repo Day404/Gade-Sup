@@ -13,7 +13,7 @@ namespace Gade_Sup
         protected Tile[] vision = new Tile[8];
         protected int hp;
         protected int dmg;
-        protected string loots;
+        protected string dialog;
         protected Weapon floor;
         protected Gold wallet;
         public Gold Wallet { get => wallet; set => wallet = value; }
@@ -21,19 +21,28 @@ namespace Gade_Sup
         public int Hp { get => hp; set => hp = value; }
         public int Dmg { get => dmg; set => dmg = value; }
         public int MaxHp { get => maxHp; set => maxHp = value; }
-        public string Loots { get => loots; set => loots = value; }
+        public string Dialog { get => dialog; set => dialog = value; }
         public Weapon Floor { get => floor; set => floor = value; }
 
         public enum Movement { Up, Down, Left, Right, Idle }
         public Character(int varY, int varX) : base(varY, varX)
         {
+            dialog = "";
             wallet = new Gold(0,0);
         }
         public void Loot(Character Target)
         {
             wallet.GoldDrop += Target.wallet.GoldDrop;
-            floor = Target.floor;
-            Loots = "Just Looted " + floor.Wtype;
+            if (floor.Wtype != "Bare Hands")
+            {
+
+            }
+            else
+            {
+                floor = Target.floor;
+                dialog = "Just Looted " + floor.Wtype;
+            }
+            
         }
         private void Equip(Weapon W)
         {
@@ -68,6 +77,7 @@ namespace Gade_Sup
         {
             if (Target.Hp < 1)
             {
+                dialog = Target.GetType().Name + " was killed by " + GetType().Name;
                 return true;
             }
             else
@@ -265,7 +275,7 @@ namespace Gade_Sup
         {
             NewTile = TileType.Leader;
             maxHp = Hp;
-            wallet.GoldDrop = 0;
+            wallet.GoldDrop = 2;
             floor = new MeleeWeapon(MeleeWeapon.Types.Longsword);
         }
 

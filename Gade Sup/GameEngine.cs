@@ -29,7 +29,7 @@ namespace Gade_Sup
         {
             
             
-            GameMap = new Map(14, 14, 8, 8, 6, 3, 3);
+            GameMap = new Map(14, 14, 8, 8, 6, 20, 3);
             H = GameMap.H;
             Vendor = new Shop(H);
             Enemies = new Enemy[GameMap.Enemies.Length];
