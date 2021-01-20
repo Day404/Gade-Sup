@@ -265,7 +265,7 @@ namespace Gade_Sup
         {
             NewTile = TileType.Leader;
             maxHp = Hp;
-            wallet.GoldDrop = 2;
+            wallet.GoldDrop = 0;
             floor = new MeleeWeapon(MeleeWeapon.Types.Longsword);
         }
 

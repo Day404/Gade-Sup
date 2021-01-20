@@ -313,7 +313,7 @@ namespace Gade_Sup
                 case Tile.TileType.Leader:
                     if (H.varY < Enemies[Index].varY && Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[0].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[0].NewTile == Tile.TileType.Weapon)
                     {
-                        
+                        EnemyPickup(0, Index);
 
                         Enemies[Index].Move(Character.Movement.Up);
                         GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
@@ -321,24 +321,27 @@ namespace Gade_Sup
                         GameMap.UpdateVision();
 
                     }
-                    else if (H.varY > Enemies[Index].varY && Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile)
+                    else if (H.varY > Enemies[Index].varY && Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[1].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[1].NewTile == Tile.TileType.Weapon)
                     {
+                        EnemyPickup(1, Index);
                         Enemies[Index].Move(Character.Movement.Down);
                         GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                         GameMap.MapDisplay[Enemies[Index].varY - 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY - 1, Enemies[Index].varX);
                         GameMap.UpdateVision();
 
                     }
-                    else if (H.varX < Enemies[Index].varX && Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile)
+                    else if (H.varX < Enemies[Index].varX && Enemies[Index].Vision[2].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[2].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[2].NewTile == Tile.TileType.Weapon)
                     {
+                        EnemyPickup(2, Index);
                         Enemies[Index].Move(Character.Movement.Left);
                         GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                         GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX + 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX + 1);
                         GameMap.UpdateVision();
 
                     }
-                    else if (H.varX > Enemies[Index].varX && Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile)
+                    else if (H.varX > Enemies[Index].varX && Enemies[Index].Vision[3].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[3].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[3].NewTile == Tile.TileType.Weapon)
                     {
+                        EnemyPickup(3, Index);
                         Enemies[Index].Move(Character.Movement.Down);
                         GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                         GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX + 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX + 1);
@@ -350,8 +353,9 @@ namespace Gade_Sup
                         switch (Ran.Next(0, 4))
                         {
                             case 0:
-                                if (Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile)
+                                if (Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[0].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[0].NewTile == Tile.TileType.Weapon)
                                 {
+                                    EnemyPickup(0, Index);
                                     Enemies[Index].Move(Character.Movement.Up);
                                     GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                     GameMap.MapDisplay[Enemies[Index].varY + 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY + 1, Enemies[Index].varX);
@@ -361,8 +365,9 @@ namespace Gade_Sup
                                 break;
                             ///////////////////////////////////////////////////////////////////////////
                             case 1:
-                                if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile)
+                                if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[1].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[1].NewTile == Tile.TileType.Weapon)
                                 {
+                                    EnemyPickup(1, Index);
                                     Enemies[Index].Move(Character.Movement.Down);
                                     GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                     GameMap.MapDisplay[Enemies[Index].varY - 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY - 1, Enemies[Index].varX);
@@ -372,8 +377,9 @@ namespace Gade_Sup
                                 break;
                             ///////////////////////////////////////////////////////////////////////////
                             case 2:
-                                if (Enemies[Index].Vision[2].NewTile == Tile.TileType.EmptyTile)
+                                if (Enemies[Index].Vision[2].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[2].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[2].NewTile == Tile.TileType.Weapon)
                                 {
+                                    EnemyPickup(2, Index);
                                     Enemies[Index].Move(Character.Movement.Left);
                                     GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                     GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX + 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX + 1);
@@ -383,8 +389,9 @@ namespace Gade_Sup
                                 break;
                             ///////////////////////////////////////////////////////////////////////////
                             case 3:
-                                if (Enemies[Index].Vision[3].NewTile == Tile.TileType.EmptyTile)
+                                if (Enemies[Index].Vision[3].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[3].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[3].NewTile == Tile.TileType.Weapon)
                                 {
+                                    EnemyPickup(3, Index);
                                     Enemies[Index].Move(Character.Movement.Right);
                                     GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                     GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX - 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX - 1);
@@ -402,8 +409,9 @@ namespace Gade_Sup
                     switch (Ran.Next(0, 4))
                     {
                         case 0:
-                            if (Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile)
+                            if (Enemies[Index].Vision[0].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[0].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[0].NewTile == Tile.TileType.Weapon)
                             {
+                                EnemyPickup(0, Index);
                                 Enemies[Index].Move(Character.Movement.Up);
                                 GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                 GameMap.MapDisplay[Enemies[Index].varY + 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY + 1, Enemies[Index].varX);
@@ -413,8 +421,9 @@ namespace Gade_Sup
                             break;
                             ///////////////////////////////////////////////////////////////////////////
                         case 1:
-                            if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile)
+                            if (Enemies[Index].Vision[1].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[1].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[1].NewTile == Tile.TileType.Weapon)
                             {
+                                EnemyPickup(1, Index);
                                 Enemies[Index].Move(Character.Movement.Down);
                                 GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                 GameMap.MapDisplay[Enemies[Index].varY - 1, Enemies[Index].varX] = new EmptyTile(Enemies[Index].varY - 1, Enemies[Index].varX);
@@ -424,8 +433,9 @@ namespace Gade_Sup
                             break;
                             ///////////////////////////////////////////////////////////////////////////
                         case 2:
-                            if (Enemies[Index].Vision[2].NewTile == Tile.TileType.EmptyTile)
+                            if (Enemies[Index].Vision[2].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[2].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[2].NewTile == Tile.TileType.Weapon)
                             {
+                                EnemyPickup(3, Index);
                                 Enemies[Index].Move(Character.Movement.Left);
                                 GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                 GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX + 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX + 1);
@@ -435,8 +445,9 @@ namespace Gade_Sup
                             break;
                             ///////////////////////////////////////////////////////////////////////////
                         case 3:
-                            if (Enemies[Index].Vision[3].NewTile == Tile.TileType.EmptyTile)
+                            if (Enemies[Index].Vision[3].NewTile == Tile.TileType.EmptyTile || Enemies[Index].Vision[3].NewTile == Tile.TileType.Gold || Enemies[Index].Vision[3].NewTile == Tile.TileType.Weapon)
                             {
+                                EnemyPickup(3,Index);
                                 Enemies[Index].Move(Character.Movement.Right);
                                 GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX] = Enemies[Index];
                                 GameMap.MapDisplay[Enemies[Index].varY, Enemies[Index].varX - 1] = new EmptyTile(Enemies[Index].varY, Enemies[Index].varX - 1);

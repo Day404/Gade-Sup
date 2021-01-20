@@ -84,7 +84,7 @@ namespace Gade_Sup
             for (int i = 0; i < Enemies.Length ; i++)
             {
                 Enemies[i].Vision[0] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX];
-                Enemies[i].Vision[1] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX];
+                Enemies[i].Vision[1] = MapDisplay[Enemies[i].varY + 1, Enemies[i].varX ];
                 Enemies[i].Vision[2] = MapDisplay[Enemies[i].varY, Enemies[i].varX - 1];
                 Enemies[i].Vision[3] = MapDisplay[Enemies[i].varY, Enemies[i].varX + 1];
                 Enemies[i].Vision[4] = MapDisplay[Enemies[i].varY - 1, Enemies[i].varX - 1];
